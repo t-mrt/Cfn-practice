@@ -11,7 +11,7 @@ Resources:
       Tags:
         - Key: Group
           Value: Cfn-practice
-  MyPublic:
+  MyPublicSubnet:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref MyVPC
@@ -20,7 +20,7 @@ Resources:
       Tags:
       - Key: Group
         Value: Cfn-practice
-  MyPrivate:
+  MyPrivateSubnet:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref MyVPC
@@ -29,3 +29,37 @@ Resources:
       Tags:
       - Key: Group
         Value: Cfn-practice
+  MyInternetGateway:
+    Type: "AWS::EC2::InternetGateway"
+    Properties:
+      Tags:
+      - Key: Group
+        Value: Cfn-practice
+  AttachInternetGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref MyVPC
+      InternetGatewayId: !Ref MyInternetGateway
+  # AttachVpnGateway:
+  #   Type: AWS::EC2::VPCGatewayAttachment
+  #   Properties:
+  #     VpcId:
+  #       Ref: VPC
+  #     VpnGatewayId:
+  #       Ref: myVPNGateway
+  #     Tags:
+  #     - Key: Group
+  #       Value: Cfn-practice
+  MyRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref MyVPC
+      Tags:
+      - Key: Group
+        Value: Cfn-practice
+  MyRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref MyRouteTable
+      GatewayId: !Ref MyInternetGateway
+      DestinationCidrBlock: 0.0.0.0/0 # すべてのIPアドレス範囲
