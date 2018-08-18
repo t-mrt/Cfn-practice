@@ -63,3 +63,8 @@ Resources:
       RouteTableId: !Ref MyRouteTable
       GatewayId: !Ref MyInternetGateway
       DestinationCidrBlock: 0.0.0.0/0 # すべてのIPアドレス範囲
+  MyPublicSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref MyPublicSubnet
+      RouteTableId: !Ref MyRouteTable
