@@ -68,3 +68,9 @@ Resources:
     Properties:
       SubnetId: !Ref MyPublicSubnet
       RouteTableId: !Ref MyRouteTable
+Outputs:
+  MyPublicSubnetId:
+    Description: 'MyPublicSubnet ID'
+    Value: !Ref MyPublicSubnet
+    Export:
+      Name: !Sub '${AWS::StackName}-MyPublicSubnet'

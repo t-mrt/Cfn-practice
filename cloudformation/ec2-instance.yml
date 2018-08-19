@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  MyEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      # EBS設定
+      BlockDeviceMappings:
+        - DeviceName: '/dev/xvda'
+          Ebs:
+            VolumeType: standard
+            VolumeSize: 10
+      ImageId: ami-940cdceb
+      # シャットダウン時の動作
+      InstanceInitiatedShutdownBehavior: 'stop'
+      # インスタンスタイプ
+      InstanceType: 't2.micro'
+      # 詳細モニタリング設定
+      Monitoring: false
+      # サブネット
+      SubnetId: {"Fn::ImportValue": !Sub "cfn-practice-network-MyPublicSubnet"}
+      # テナンシー
+      Tenancy: 'default'
