@@ -10,13 +10,18 @@ Resources:
             VolumeType: standard
             VolumeSize: 10
       ImageId: ami-940cdceb
-      # シャットダウン時の動作
       InstanceInitiatedShutdownBehavior: 'stop'
-      # インスタンスタイプ
       InstanceType: 't2.micro'
-      # 詳細モニタリング設定
       Monitoring: false
-      # サブネット
-      SubnetId: {"Fn::ImportValue": !Sub "cfn-practice-network-MyPublicSubnet"}
+      KeyName : '2018-08-19'
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: true
+          PrivateIpAddress: 10.0.1.10
+          DeviceIndex: 0
+          GroupSet:
+          - sg-08cef5c614ff1013a
+          SubnetId:
+            Fn::ImportValue: cfn-practice-network-MyPublicSubnet # ここ動的に変えたい
+
       # テナンシー
       Tenancy: 'default'
