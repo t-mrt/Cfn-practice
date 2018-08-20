@@ -74,3 +74,8 @@ Outputs:
     Value: !Ref MyPublicSubnet
     Export:
       Name: !Sub '${AWS::StackName}-MyPublicSubnet'
+  MyVPCId:
+    Description: 'MyVPC ID'
+    Value: !Ref MyVPC
+    Export:
+      Name: !Sub '${AWS::StackName}-MyVPC'

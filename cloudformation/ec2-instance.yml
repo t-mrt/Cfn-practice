@@ -16,10 +16,10 @@ Resources:
       KeyName : '2018-08-19'
       NetworkInterfaces:
         - AssociatePublicIpAddress: true
-          PrivateIpAddress: 10.0.1.10
+          PrivateIpAddress: 10.0.1.11
           DeviceIndex: 0
           GroupSet:
-          - sg-08cef5c614ff1013a
+          - sg-0869cfdf7a1b20449
           SubnetId:
             Fn::ImportValue: cfn-practice-network-MyPublicSubnet # ここ動的に変えたい
 
