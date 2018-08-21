@@ -1,0 +1,3 @@
+Resources:
+  MyEC2Instance:
+    Type: 'AWS::Route53::RecordSet'

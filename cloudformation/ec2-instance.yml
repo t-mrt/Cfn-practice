@@ -25,3 +25,13 @@ Resources:
 
       # テナンシー
       Tenancy: 'default'
+  InstanceDNSRecord :
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneName: yux3.net.
+        Comment: "A record for the instance."
+        Name : test.yux3.net.
+        Type : CNAME
+        TTL : 300
+        ResourceRecords :
+          - !GetAtt MyEC2Instance.PublicDnsName
